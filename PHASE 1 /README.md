@@ -1,6 +1,6 @@
 # Phase 1: Exploitation and Reverse Shell
 
-## ✅ Task 1.1: Compromise the target using Metasploit
+## Task 1.1: Compromise the target using Metasploit
 
 ### Service Targeted
 - **Service**: SSH (OpenSSH 6.6.1p1)
@@ -45,7 +45,7 @@
 ### Script Summary
 - Used Python with Paramiko to automate SSH login and trigger a reverse shell.
 
-### Python Script: `ssh_bruteforce_reverse.py`
+### Python Script: `ssh_reverse_shell_1.2.py`
 ```python
 import paramiko
 
