@@ -50,16 +50,6 @@ The project consists of three main phases:
 
 ---
 
-## Project Deliverables
-
-- Screenshots of each phase.
-- Demonstrated improvement through a clear comparison.
-
----
-
 ## Contributors
 - Group Members: [Add Names Here]
-
-## License
-This project is for educational purposes only.
 
