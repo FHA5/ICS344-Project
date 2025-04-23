@@ -9,7 +9,7 @@
 ### Steps Followed:
 1. **Reconnaissance**:
    ```bash
-   nmap -sV -p22 192.168.142.131
+   nmap -sV 192.168.142.131
    ```
    - Identified OpenSSH running on port 22
 
