@@ -66,5 +66,5 @@ Implement a defensive mechanism on the victim (Metasploitable3) system to preven
 
 ---
 
-Return to [Phase 2](./phase2.md) or [Phase 1](./phase1.md)
+Return to [Phase 2](./PHASE1/README.md) or [Phase 1](./PHASE1/README.md)
 
