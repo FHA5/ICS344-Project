@@ -138,5 +138,3 @@ This practical exercise improves overall understanding of cyberattack techniques
 
 ---
 
-# END ✅
-
