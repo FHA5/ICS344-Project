@@ -157,33 +157,35 @@ Dashboards were built using `eval` and `case` commands to classify successful an
 ## Images
 ## Phase 2 Images
 
+## Phase 2 Images
+
+## Phase 2 Images
+
 ![Screenshot1](./screenshots/Screenshot1.png)
 ![Screenshot2](./screenshots/Screenshot2.png)
-![Screenshot0147](./screenshots/Screenshot 2025-04-22 0147.png)
-![Screenshot0227](./screenshots/Screenshot 2025-04-22 0227.png)
-![Screenshot0326](./screenshots/Screenshot 2025-04-22 0326.png)
-![Screenshot1252](./screenshots/Screenshot 2025-04-22 1252.png)
-![Screenshot0351](./screenshots/Screenshot 2025-04-22 0351.png)
-![Screenshot0425](./screenshots/Screenshot 2025-04-22 0425.png)
-![Screenshot0655](./screenshots/Screenshot 2025-04-22 0655.png)
-![Screenshot3731](./screenshots/Screenshot 2025-04-22 3731.png)
-![Screenshot0416](./screenshots/Screenshot 2025-04-22 0416.png)
-![Screenshot0331](./screenshots/Screenshot 2025-04-22 0331.png)
-![Screenshot0735](./screenshots/Screenshot 2025-04-22 0735.png)
-![Screenshot0410](./screenshots/Screenshot 2025-04-22 0410.png)
-![Screenshot1145](./screenshots/Screenshot 2025-04-22 1145.png)
-![Screenshot2312](./screenshots/Screenshot 2025-04-22 2312.png)
-![Screenshot3128](./screenshots/Screenshot 2025-04-22 3128.png)
+![Screenshot0147](./screenshots/Screenshot%202025-04-22%200147.png)
+![Screenshot0227](./screenshots/Screenshot%202025-04-22%200227.png)
+![Screenshot0326](./screenshots/Screenshot%202025-04-22%200326.png)
+![Screenshot1252](./screenshots/Screenshot%202025-04-22%201252.png)
+![Screenshot0351](./screenshots/Screenshot%202025-04-22%200351.png)
+![Screenshot0425](./screenshots/Screenshot%202025-04-22%200425.png)
+![Screenshot0655](./screenshots/Screenshot%202025-04-22%200655.png)
+![Screenshot3731](./screenshots/Screenshot%202025-04-22%203731.png)
+![Screenshot0416](./screenshots/Screenshot%202025-04-22%200416.png)
+![Screenshot0331](./screenshots/Screenshot%202025-04-22%200331.png)
+![Screenshot0735](./screenshots/Screenshot%202025-04-22%200735.png)
+![Screenshot0410](./screenshots/Screenshot%202025-04-22%200410.png)
+![Screenshot1145](./screenshots/Screenshot%202025-04-22%201145.png)
+![Screenshot2312](./screenshots/Screenshot%202025-04-22%202312.png)
+![Screenshot3128](./screenshots/Screenshot%202025-04-22%203128.png)
 
-### Attacker  Images
+### Attacker Folder Images
 
-
-![Screenshot0314](./screenshots/Screenshot 2025-04-22 0314.png)
-![Screenshot0833](./screenshots/Screenshot 2025-04-22 0833.png)
-![Screenshot0902](./screenshots/Screenshot 2025-04-22 0902.png)
-![Screenshot1012](./screenshots/Screenshot 2025-04-22 1012.png)
-![Screenshot1126](./screenshots/Screenshot 2025-04-22 1126.png)
-
+![Screenshot0314](./screenshots/Screenshot%202025-04-22%200314.png)
+![Screenshot0833](./screenshots/Screenshot%202025-04-22%200833.png)
+![Screenshot0902](./screenshots/Screenshot%202025-04-22%200902.png)
+![Screenshot1012](./screenshots/Screenshot%202025-04-22%201012.png)
+![Screenshot1126](./screenshots/Screenshot%202025-04-22%201126.png)
 
 
 # Phase 3: Hardening with Fail2Ban
