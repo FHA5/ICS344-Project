@@ -119,8 +119,9 @@ The attacker's IP was successfully banned after multiple failed login attempts.
 
 **Images:**
 
-- ![](screenshots/Screenshot2025-04-22-0333.png)
-- ![](screenshots/Screenshot2025-04-22-8038.png)
+- ![](screenshots/Screenshot 2025-04-23 025808.png)
+- ![](screenshots/Screenshot 2025-04-23 030038)
+- ![](screenshots/Screenshot 2025-04-23 025333.png)
 
 ---
 
