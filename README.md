@@ -161,31 +161,33 @@ Dashboards were built using `eval` and `case` commands to classify successful an
 
 ## Phase 2 Images
 
-![Screenshot1](./screenshots/Screenshot1.png)
-![Screenshot2](./screenshots/Screenshot2.png)
-![Screenshot0147](./screenshots/Screenshot%202025-04-22%200147.png)
-![Screenshot0227](./screenshots/Screenshot%202025-04-22%200227.png)
-![Screenshot0326](./screenshots/Screenshot%202025-04-22%200326.png)
-![Screenshot1252](./screenshots/Screenshot%202025-04-22%201252.png)
-![Screenshot0351](./screenshots/Screenshot%202025-04-22%200351.png)
-![Screenshot0425](./screenshots/Screenshot%202025-04-22%200425.png)
-![Screenshot0655](./screenshots/Screenshot%202025-04-22%200655.png)
-![Screenshot3731](./screenshots/Screenshot%202025-04-22%203731.png)
-![Screenshot0416](./screenshots/Screenshot%202025-04-22%200416.png)
-![Screenshot0331](./screenshots/Screenshot%202025-04-22%200331.png)
-![Screenshot0735](./screenshots/Screenshot%202025-04-22%200735.png)
-![Screenshot0410](./screenshots/Screenshot%202025-04-22%200410.png)
-![Screenshot1145](./screenshots/Screenshot%202025-04-22%201145.png)
-![Screenshot2312](./screenshots/Screenshot%202025-04-22%202312.png)
-![Screenshot3128](./screenshots/Screenshot%202025-04-22%203128.png)
+![Screenshot17](../screenshots/Screenshot17.png)
+![Screenshot18](../screenshots/Screenshot18.png)
+![Screenshot19](../screenshots/Screenshot19.png)
+![Screenshot20](../screenshots/Screenshot20.png)
+![Screenshot21](../screenshots/Screenshot21.png)
+![Screenshot22](../screenshots/Screenshot22.png)
+![Screenshot23](../screenshots/Screenshot23.png)
+![Screenshot24](../screenshots/Screenshot24.png)
+![Screenshot25](../screenshots/Screenshot25.png)
+![Screenshot26](../screenshots/Screenshot26.png)
+![Screenshot27](../screenshots/Screenshot27.png)
+![Screenshot28](../screenshots/Screenshot28.png)
+![Screenshot29](../screenshots/Screenshot29.png)
+![Screenshot30](../screenshots/Screenshot30.png)
+![Screenshot31](../screenshots/Screenshot31.png)
+![Screenshot32](../screenshots/Screenshot32.png)
+![Screenshot33](../screenshots/Screenshot33.png)
 
 ### Attacker Folder Images
 
-![Screenshot0314](./screenshots/Screenshot%202025-04-22%200314.png)
-![Screenshot0833](./screenshots/Screenshot%202025-04-22%200833.png)
-![Screenshot0902](./screenshots/Screenshot%202025-04-22%200902.png)
-![Screenshot1012](./screenshots/Screenshot%202025-04-22%201012.png)
-![Screenshot1126](./screenshots/Screenshot%202025-04-22%201126.png)
+### Phase 2 - Attacker Images
+
+![Screenshot13](../screenshots/Screenshot13.png)
+![Screenshot14](../screenshots/Screenshot14.png)
+![Screenshot15](../screenshots/Screenshot15.png)
+![Screenshot16](../screenshots/Screenshot16.png)
+![Screenshot17](../screenshots/Screenshot17.png)
 
 
 # Phase 3: Hardening with Fail2Ban
@@ -248,9 +250,9 @@ Result: IP address got banned, and SSH connections were blocked.
 
 
 ## Images
-- Image 1: Fail2Ban installation.
-- Image 2: Jail configuration file.
-- Image 3: IP banning status.
+![Screenshot34](../screenshots/Screenshot34.png)
+![Screenshot35](../screenshots/Screenshot35.png)
+![Screenshot36](../screenshots/Screenshot36.png)
 
 
 # Conclusion
