@@ -1,6 +1,6 @@
 # 🛡️ Phase 2: SIEM - Dashboard Analysis
 
-## 🎯 Objective
+## 🎯 Objective.
 
 - Integrate logs from the **victim machine** (Metasploitable3) into a **SIEM server** (Splunk running on the attacker/Kali VM).
 - Visualize attack logs to identify patterns such as brute-force attempts and reverse shells.
