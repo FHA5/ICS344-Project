@@ -133,21 +133,3 @@ http://192.168.142.129:8000/en-US/app/search/search
 - These logs will be compared in **Phase 3** against defense mechanisms.
 
 > Proceed to Phase 3 for defensive implementation and validation.
-![Screenshot17](./screenshots/Screenshot17.png)
-![Screenshot18](./screenshots/Screenshot18.png)
-![Screenshot19](./screenshots/Screenshot19.png)
-![Screenshot20](./screenshots/Screenshot20.png)
-![Screenshot21](./screenshots/Screenshot21.png)
-![Screenshot22](./screenshots/Screenshot22.png)
-![Screenshot23](./screenshots/Screenshot23.png)
-![Screenshot24](./screenshots/Screenshot24.png)
-![Screenshot25](./screenshots/Screenshot25.png)
-![Screenshot26](./screenshots/Screenshot26.png)
-![Screenshot27](./screenshots/Screenshot27.png)
-![Screenshot28](./screenshots/Screenshot28.png)
-![Screenshot29](./screenshots/Screenshot29.png)
-![Screenshot30](./screenshots/Screenshot30.png)
-![Screenshot31](./screenshots/Screenshot31.png)
-![Screenshot32](./screenshots/Screenshot32.png)
-![Screenshot33](./screenshots/Screenshot33.png)
-
