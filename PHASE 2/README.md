@@ -54,8 +54,8 @@ Default credentials:
 2. Under **Receive data**, click **Add New**
 3. Set port to **9997** and click **Save**
 
-<img width="956" alt="Screenshot 2025-04-22 163425" src="https://github.com/user-attachments/assets/d65323f5-7de3-4b22-b498-c477cfb91389" />
 <img width="955" alt="Screenshot 2025-04-22 163351" src="https://github.com/user-attachments/assets/f1d308a3-ddc1-484f-8561-2875aeaf4c65" />
+<img width="956" alt="Screenshot 2025-04-22 163425" src="https://github.com/user-attachments/assets/d65323f5-7de3-4b22-b498-c477cfb91389" />
 
 ---
 
