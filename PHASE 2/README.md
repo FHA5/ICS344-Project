@@ -91,7 +91,6 @@ sudo /opt/splunkforwarder/bin/splunk restart
 
 Installed Splunk Universal Forwarder on the victim machine.  
 Accepted the license and started the forwarder service.  
-Confirmed Splunk forwarder is running and ready.
 
 ---
 
