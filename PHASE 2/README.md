@@ -157,12 +157,11 @@ index=main "session opened" OR "session closed"
 ```spl
 index=* source="/var/log/auth.log"
 ```
-
+![Screenshot26](../screenshots/Screenshot26.png)
 ![Screenshot22](../screenshots/Screenshot22.png)
 ![Screenshot23](../screenshots/Screenshot23.png)
 ![Screenshot24](../screenshots/Screenshot24.png)
 ![Screenshot25](../screenshots/Screenshot25.png)
-![Screenshot26](../screenshots/Screenshot26.png)
 ![Screenshot27](../screenshots/Screenshot27.png)
 ![Screenshot28](../screenshots/Screenshot28.png)
 
