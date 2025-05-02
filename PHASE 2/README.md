@@ -88,7 +88,20 @@ sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/auth.log
 sudo /opt/splunkforwarder/bin/splunk restart
 ```
 ![Screenshot18](../screenshots/Screenshot18.png)
+
+Installed Splunk Universal Forwarder on the victim machine.  
+Accepted the license and started the forwarder service.  
+Confirmed Splunk forwarder is running and ready.
+
+---
+
 ![Screenshot21](../screenshots/Screenshot21.png)
+
+---
+
+Authenticated with Splunk forwarder CLI and added forwarding to Splunk server (port 9997).  
+Monitored `/var/log/auth.log` and listed active/inactive forwarders.  
+Successfully verified log forwarding setup from victim to Splunk.
 
 ---
 
