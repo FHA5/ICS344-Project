@@ -1,6 +1,6 @@
-# 🛡️ Phase 2: SIEM - Dashboard Analysis
+#  Phase 2: SIEM - Dashboard Analysis
 
-## 🎯 Objective
+## Objective
 
 This phase focuses on **Security Information and Event Management (SIEM)** using **Splunk**. The goal is to:
 
@@ -11,7 +11,7 @@ This phase focuses on **Security Information and Event Management (SIEM)** using
 
 ---
 
-## 🖥️ Splunk Server Setup (Kali VM)
+##  Splunk Server Setup (Kali VM)
 
 ### Why Splunk?
 
@@ -60,7 +60,7 @@ Default credentials:
 ---
 
 
-## 🛰️ Splunk Forwarder Setup (Metasploitable3 VM)
+##  Splunk Forwarder Setup (Metasploitable3 VM)
 
 ### Why Use a Forwarder?
 
@@ -69,13 +69,11 @@ The **Universal Forwarder** is a lightweight agent that forwards system logs sec
 ### Installation
 
 ```bash
-wget -O splunkforwarder.tgz https://download.splunk.com/products/universalforwarder/releases/9.4.1/linux/splunkforwarder-9.4.1-e3bdab203ac8-linux-amd64.tgz
-tar -xvzf splunkforwarder.tgz
-sudo mv splunkforwarder /opt/splunkforwarder
+wget -O splunkforwarder-9.4.1-e3bdab203ac8-linux-amd64.deb "https://download.splunk.com/products/universalforwarder/releases/9.4.1/linux/splunkforwarder-9.4.1-e3bdab203ac8-linux-amd64.deb"
+sudo dpkg -i splunkforwarder-9.4.1-e3bdab203ac8-linux-amd64.deb
+sudo apt --fix-broken install
 sudo /opt/splunkforwarder/bin/splunk start --accept-license
 ```
-
-![Screenshot17](../screenshots/Screenshot17.png)
 ![Screenshot18](../screenshots/Screenshot18.png)
 ![Screenshot19](../screenshots/Screenshot19.png)
 ![Screenshot20](../screenshots/Screenshot20.png)
@@ -84,9 +82,8 @@ sudo /opt/splunkforwarder/bin/splunk start --accept-license
 ### Connect to Splunk Server (Kali)
 
 ```bash
-sudo /opt/splunkforwarder/bin/splunk enable boot-start
-sudo /opt/splunkforwarder/bin/splunk login -auth admin:admin123
 sudo /opt/splunkforwarder/bin/splunk add forward-server 192.168.142.129:9997
+
 ```
 
 ### Monitor Authentication Logs
@@ -98,7 +95,7 @@ sudo /opt/splunkforwarder/bin/splunk restart
 
 ---
 
-## ⚔️ Attacks Simulated
+##  Attacks Simulated
 
 ### 1. SSH Brute-force via Hydra
 
@@ -120,7 +117,7 @@ nc -lvnp 4444
 
 ---
 
-## 📊 Visualization in Splunk
+## Visualization in Splunk
 
 ### Open the Search Dashboard
 
@@ -179,7 +176,7 @@ index=* source="/var/log/auth.log"
 
 ---
 
-## ✅ Log Test (Verification)
+## Log Test (Verification)
 
 ```bash
 sudo logger -p auth.info "PHASE2 SSH ONLY TEST: $(date)"
@@ -191,7 +188,7 @@ index=* source="/var/log/auth.log"
 
 ---
 
-## 🔐 Defense Setup: Fail2Ban
+## Defense Setup: Fail2Ban
 
 ### Install Fail2Ban
 
