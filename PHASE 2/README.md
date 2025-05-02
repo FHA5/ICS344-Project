@@ -74,11 +74,6 @@ sudo dpkg -i splunkforwarder-9.4.1-e3bdab203ac8-linux-amd64.deb
 sudo apt --fix-broken install
 sudo /opt/splunkforwarder/bin/splunk start --accept-license
 ```
-![Screenshot18](../screenshots/Screenshot18.png)
-![Screenshot19](../screenshots/Screenshot19.png)
-![Screenshot20](../screenshots/Screenshot20.png)
-![Screenshot21](../screenshots/Screenshot21.png)
-
 ### Connect to Splunk Server (Kali)
 
 ```bash
@@ -92,6 +87,8 @@ sudo /opt/splunkforwarder/bin/splunk add forward-server 192.168.142.129:9997
 sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/auth.log
 sudo /opt/splunkforwarder/bin/splunk restart
 ```
+![Screenshot18](../screenshots/Screenshot18.png)
+![Screenshot21](../screenshots/Screenshot21.png)
 
 ---
 
