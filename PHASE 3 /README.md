@@ -68,3 +68,10 @@ Implement a defensive mechanism on the victim (Metasploitable3) system to preven
 
 Return to [Phase 2](./PHASE1/README.md) or [Phase 1](./PHASE1/README.md)
 
+
+
+![Screenshot34](../screenshots/Screenshot34.png)
+![Screenshot35](../screenshots/Screenshot35.png)
+![Screenshot36](../screenshots/Screenshot36.png)
+
+
