@@ -166,42 +166,8 @@ index=* source="/var/log/auth.log"
 ---
 
 
-## Defense Setup: Fail2Ban
-
-### Install Fail2Ban
-
-```bash
-sudo apt-get install fail2ban -y
-```
-
-### Configure Fail2Ban (Jail)
-
-```ini
-[sshd]
-enabled = true
-port = ssh
-logpath = /var/log/auth.log
-maxretry = 3
-bantime = 600
-findtime = 300
-```
-
-### Check Jail Status
-
-```bash
-sudo fail2ban-client status ssh
-```
-
-![Screenshot30](../screenshots/Screenshot30.png)
-![Screenshot31](../screenshots/Screenshot31.png)
-![Screenshot32](../screenshots/Screenshot32.png)
-![Screenshot33](../screenshots/Screenshot33.png)
-
----
-
-## ✅ Conclusion
+## Conclusion
 
 - Successfully configured log forwarding from Metasploitable3 to Splunk.
 - Simulated brute-force and reverse shell attacks, tracked in real time.
 - Built visual dashboards to show attacker progression.
-- Hardened the system using Fail2Ban and validated attack prevention.
