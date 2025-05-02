@@ -50,16 +50,8 @@
  - The system successfully blocked or terminated unauthorized access.
  
  ---
- 
- ## Project Deliverables
- 
- - Screenshots of each phase.
- - Demonstrated improvement through a clear comparison.
- 
- ---
+
  
  ## Contributors
- - Group Members: [Add Names Here]
- 
- ## License
- This project is for educational purposes only.
+ - Group Members: 
+ - Fahad Alathel - 202168950
