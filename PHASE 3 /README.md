@@ -1,11 +1,11 @@
-# 🛡️ Phase 3: Defensive Strategy
+#  Phase 3: Defensive Strategy
 
-## 🎯 Objective
+## Objective
 Implement a defensive mechanism on the victim (Metasploitable3) system to prevent or detect SSH-based attacks. This includes configuration changes and the deployment of monitoring tools, followed by validation testing.
 
 ---
 
-## 🔐 Defensive Mechanism
+##  Defensive Mechanism
 ### SSH Hardening
 1. **Disable Root Login:**
    ```bash
@@ -24,10 +24,11 @@ Implement a defensive mechanism on the victim (Metasploitable3) system to preven
    ```bash
    sudo service ssh restart
    ```
+<img width="709" alt="Screenshot 2025-04-23 025333" src="https://github.com/user-attachments/assets/bda342d1-004b-4a3c-997c-dfd0139270a6" />
 
 ---
 
-## 🧪 Testing & Validation
+## Testing & Validation
 ### Before Defense
 - **SSH Brute-force via Hydra:**
    ```bash
@@ -52,26 +53,13 @@ Implement a defensive mechanism on the victim (Metasploitable3) system to preven
   - Metasploit: Attack fails due to SSH password authentication being disabled.
 
 ---
+<img width="689" alt="Screenshot 2025-04-23 030038" src="https://github.com/user-attachments/assets/da20433b-2a24-431d-8a75-16505bc15971" />
 
-## ✅ Outcome
+<img width="644" alt="Screenshot 2025-04-23 025808" src="https://github.com/user-attachments/assets/cc837c63-c220-4c9f-8cbb-c3ea1c575c03" />
+
+
+##  Outcome
 - The SSH configuration hardening prevented the same brute-force and reverse shell attacks demonstrated earlier.
 - Splunk SIEM confirms no successful SSH logins occurred after the defense.
 
 ---
-
-## 📸 Deliverables
-- Screenshot of the updated `/etc/ssh/sshd_config`.
-- Screenshot of failed login attempts via Hydra and Metasploit.
-- Splunk dashboard screenshot showing drop in successful SSH access.
-
----
-
-Return to [Phase 2](./PHASE1/README.md) or [Phase 1](./PHASE1/README.md)
-
-
-
-![Screenshot34](../screenshots/Screenshot34.png)
-![Screenshot35](../screenshots/Screenshot35.png)
-![Screenshot36](../screenshots/Screenshot36.png)
-
-
