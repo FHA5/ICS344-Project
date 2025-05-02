@@ -141,8 +141,8 @@ http://192.168.142.129:8000/en-US/app/search/search
 
 
 
-![Screenshot17](./screenshots/Screenshot17.png)
-![Screenshot18](./screenshots/Screenshot18.png)
+![Screenshot17](../screenshots/Screenshot17.png)
+![Screenshot18](../screenshots/Screenshot18.png)
 ![Screenshot19](./screenshots/Screenshot19.png)
 ![Screenshot20](./screenshots/Screenshot20.png)
 ![Screenshot21](./screenshots/Screenshot21.png)
