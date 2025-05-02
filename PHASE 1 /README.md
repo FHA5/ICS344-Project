@@ -75,9 +75,11 @@ sessions
 sessions 2
 shell
 ```
-<img src="https://github.com/user-attachments/assets/e355856b-ba2f-4a39-b99e-abad6ca37f2b" width="500"/>
-<img src="https://github.com/user-attachments/assets/70e3dd0d-61f7-41d5-b7f3-6b5e7b1061a0" width="500"/>
 <img src="https://github.com/user-attachments/assets/84dc529f-e7a7-4458-a8ff-12f9a80a8d15" width="500"/>
+<img src="https://github.com/user-attachments/assets/70e3dd0d-61f7-41d5-b7f3-6b5e7b1061a0" width="500"/>
+<img src="https://github.com/user-attachments/assets/e355856b-ba2f-4a39-b99e-abad6ca37f2b" width="500"/>
+
+
 
  **Why?** Meterpreter provides advanced post-exploitation features such as file system interaction, privilege escalation, and keylogging. Upgrading from a basic shell enhances our control.
 
