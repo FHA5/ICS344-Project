@@ -69,7 +69,8 @@ sudo fail2ban-client status ssh
 
 ![Screenshot30](../screenshots/Screenshot30.png)
 ![Screenshot31](../screenshots/Screenshot31.png)
-![Screenshot33](../screenshots/Screenshot33.png)
+<img width="463" alt="image" src="https://github.com/user-attachments/assets/70640035-10d5-4fab-8f78-23f4f1b48d9a" />
+
 
 ---
 Screenshot shows:
@@ -122,7 +123,8 @@ Results:
 
 <img width="689" alt="Screenshot 2025-04-23 030038" src="https://github.com/user-attachments/assets/8a2efb61-e752-4a42-88f3-0b80002b9c93" />
 <img width="644" alt="Screenshot 2025-04-23 025808" src="https://github.com/user-attachments/assets/77b68172-440d-49fc-b8d6-5b18543dd2f3" />
-![Screenshot33](../screenshots/Screenshot33.png)
+<img width="450" alt="image" src="https://github.com/user-attachments/assets/7e3a1f22-7eea-48c1-90ed-079718ae4e47" />
+
 
 ---
 
