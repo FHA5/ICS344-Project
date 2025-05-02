@@ -39,6 +39,26 @@ sudo service ssh restart
 
 ### 2. Intrusion Prevention with Fail2Ban
 
+## Defense Setup: Fail2Ban
+
+### Install Fail2Ban
+
+```bash
+sudo apt-get install fail2ban -y
+```
+
+### Configure Fail2Ban (Jail)
+
+```ini
+[sshd]
+enabled = true
+port = ssh
+logpath = /var/log/auth.log
+maxretry = 3
+bantime = 600
+findtime = 300
+```
+
 **Fail2Ban** monitors `/var/log/auth.log` for failed SSH login attempts and bans IPs after repeated failures.
 
 #### Restart and Check Fail2Ban
@@ -47,6 +67,11 @@ sudo service fail2ban restart
 sudo fail2ban-client status ssh
 ```
 
+![Screenshot30](../screenshots/Screenshot30.png)
+![Screenshot31](../screenshots/Screenshot31.png)
+![Screenshot32](../screenshots/Screenshot32.png)
+
+---
 Screenshot shows:
 - `File list: /var/log/auth.log`
 - No failed attempts yet
@@ -88,10 +113,16 @@ This confirms that the jail is correctly monitoring SSH activity and ready to re
 - Metasploit module runs but no sessions are created.
 - Terminal shows `Allowed types: ['publickey']` indicating password authentication is now disabled server-side.
 
+### Check Jail Status
+
+```bash
+sudo fail2ban-client status ssh
+```
 Results:
 
 <img width="689" alt="Screenshot 2025-04-23 030038" src="https://github.com/user-attachments/assets/8a2efb61-e752-4a42-88f3-0b80002b9c93" />
 <img width="644" alt="Screenshot 2025-04-23 025808" src="https://github.com/user-attachments/assets/77b68172-440d-49fc-b8d6-5b18543dd2f3" />
+![Screenshot33](../screenshots/Screenshot33.png)
 
 ---
 
