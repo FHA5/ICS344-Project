@@ -129,37 +129,18 @@ run ssh_reverse_shell_1.2.py
 ### Open the Search Dashboard
 
 ```
-http://192.168.142.129:8000/en-US/app/search/search
+http://192.168.142.129:8000/
 ```
 
-### Example Queries
 
-#### Failed SSH Login Attempts
-
-```spl
-index=main "Failed password"
-```
-
-#### Successful SSH Logins
-
-```spl
-index=main "Accepted password"
-```
-
-#### Reverse Shell Activity
-
-```spl
-index=main "session opened" OR "session closed"
-```
 
 #### All SSH Events from auth.log
 
 ```spl
 index=* source="/var/log/auth.log"
 ```
-![Screenshot26](../screenshots/Screenshot26.png)
 ![Screenshot25](../screenshots/Screenshot25.png)
-![Screenshot28](../screenshots/Screenshot28.png)
+![Screenshot26](../screenshots/Screenshot26.png)
 
 ---
 
