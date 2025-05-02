@@ -1,5 +1,30 @@
 # Phase 1: Exploitation and Reverse Shell
- 
+## Lab Setup & Connectivity Check
+
+### Virtual Machines Used
+| Role         | OS                 | IP Address         |
+|--------------|--------------------|--------------------|
+| Attacker     | Kali Linux         | 192.168.142.129    |
+| Victim       | Metasploitable 3   | 192.168.142.131    |
+
+### Connectivity Test (Ping)
+
+#### Attacker ➜ Victim
+```bash
+ping 192.168.142.131
+```
+<img width="873" alt="Screenshot 2025-04-21 193227" src="https://github.com/user-attachments/assets/73da16f9-f226-4db0-b2b3-a9234ee43dc8" />
+
+#### Victim ➜ Attacker
+```bash
+ping 192.168.142.129
+```
+<img width="419" alt="Screenshot 2025-04-21 193354" src="https://github.com/user-attachments/assets/950323b3-59ba-4e8d-a9ce-52460545e293" />
+
+
+Successful ICMP replies confirm two-way communication is established.
+
+---
  ## Task 1.1: Compromise the target using Metasploit
  
  ### Service Targeted
