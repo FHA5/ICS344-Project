@@ -132,7 +132,11 @@ run ssh_reverse_shell_1.2.py
 http://192.168.142.129:8000/
 ```
 
+## Log Test (Verification)
 
+```bash
+sudo logger -p auth.info "PHASE2 SSH ONLY TEST: $(date)"
+```
 
 #### All SSH Events from auth.log
 
@@ -157,19 +161,10 @@ index=* source="/var/log/auth.log"
 | stats count by event_type
 ```
 
----
-
-## Log Test (Verification)
-
-```bash
-sudo logger -p auth.info "PHASE2 SSH ONLY TEST: $(date)"
-```
-
-```spl
-index=* source="/var/log/auth.log"
-```
+![Screenshot29](../screenshots/Screenshot29.png)
 
 ---
+
 
 ## Defense Setup: Fail2Ban
 
@@ -197,7 +192,6 @@ findtime = 300
 sudo fail2ban-client status ssh
 ```
 
-![Screenshot29](../screenshots/Screenshot29.png)
 ![Screenshot30](../screenshots/Screenshot30.png)
 ![Screenshot31](../screenshots/Screenshot31.png)
 ![Screenshot32](../screenshots/Screenshot32.png)
