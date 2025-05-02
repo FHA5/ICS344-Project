@@ -69,7 +69,7 @@ sudo fail2ban-client status ssh
 
 ![Screenshot30](../screenshots/Screenshot30.png)
 ![Screenshot31](../screenshots/Screenshot31.png)
-![Screenshot32](../screenshots/Screenshot32.png)
+![Screenshot33](../screenshots/Screenshot33.png)
 
 ---
 Screenshot shows:
