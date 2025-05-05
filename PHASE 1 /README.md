@@ -41,16 +41,16 @@ nmap -sV -p- 192.168.142.131
 
  **Why?** Scanning all ports (`-p-`) ensures no open services are missed. Service detection (`-sV`) reveals detailed version info—critical for identifying vulnerabilities.
 
-- Result: Port 22 is open and running OpenSSH 6.6.1p1, a service often attacked via brute-force if weak credentials exist.
-- 
+- Result: Port 22 is open and running OpenSSH 6.6.1p1.
+
 ![Screenshot 2025-05-05 220016](https://github.com/user-attachments/assets/08079eea-de46-4efc-9fb7-63d1eb62d97d)
 
 **Why it matters ?**
-Normally, after a few failed login attempts, SSH closes the connection. But with this flaw, an attacker can send many password guesses in a single session speeding up brute-force attacks.
+- Normally, after a few failed login attempts, SSH closes the connection. But with this flaw, an attacker can send many password guesses in a single session speeding up brute-force attacks.
 
 **Impact ?**
-OpenSSH 6.6.1p1 does not restrict the list of keyboard-interactive devices, so this version is vulnerable. /n
-Brute-force tools like Hydra become more effective.
+- OpenSSH 6.6.1p1 does not restrict the list of keyboard-interactive devices, so this version is vulnerable. /n
+- Brute-force tools like Hydra become more effective.
 
 #### 2. Credential Brute-Forcing with Hydra
 ```bash
