@@ -14,13 +14,13 @@
 ```bash
 ping 192.168.142.131
 ```
-<img src="https://github.com/user-attachments/assets/73da16f9-f226-4db0-b2b3-a9234ee43dc8" width="500"/>
+<img src="https://github.com/user-attachments/assets/73da16f9-f226-4db0-b2b3-a9234ee43dc8" width="800"/>
 
 ####  Victim ➜ Attacker
 ```bash
 ping 192.168.142.129
 ```
-<img src="https://github.com/user-attachments/assets/950323b3-59ba-4e8d-a9ce-52460545e293" width="300"/>
+<img src="https://github.com/user-attachments/assets/950323b3-59ba-4e8d-a9ce-52460545e293" width="800"/>
 
  The successful replies confirm two-way communication, which is a prerequisite for all following exploitation attempts.
 
@@ -37,7 +37,7 @@ Leverage known weak credentials to gain unauthorized access to the victim via SS
 ```bash
 nmap -sV -p- 192.168.142.131
 ```
-<img src="https://github.com/user-attachments/assets/49b83e0a-cf98-49e4-b86a-e7f53381f40d" width="600"/>
+<img src="https://github.com/user-attachments/assets/49b83e0a-cf98-49e4-b86a-e7f53381f40d" width="800"/>
 
  **Why?** Scanning all ports (`-p-`) ensures no open services are missed. Service detection (`-sV`) reveals detailed version info—critical for identifying vulnerabilities.
 
@@ -45,18 +45,18 @@ nmap -sV -p- 192.168.142.131
 - 
 ![Screenshot 2025-05-05 220016](https://github.com/user-attachments/assets/08079eea-de46-4efc-9fb7-63d1eb62d97d)
 
-Why it matters ?
+**Why it matters ?**
 Normally, after a few failed login attempts, SSH closes the connection. But with this flaw, an attacker can send many password guesses in a single session speeding up brute-force attacks.
 
-Impact ?
-OpenSSH 6.6.1p1 does not restrict the list of keyboard-interactive devices, so this version is vulnerable. 
+**Impact ?**
+OpenSSH 6.6.1p1 does not restrict the list of keyboard-interactive devices, so this version is vulnerable. /n
 Brute-force tools like Hydra become more effective.
 
 #### 2. Credential Brute-Forcing with Hydra
 ```bash
 hydra -L usernames.txt -P /usr/share/wordlists/rockyou.txt ssh://192.168.142.131
 ```
-<img src="https://github.com/user-attachments/assets/6ee6884e-569b-4013-b543-28b949035cfe" width="500"/>
+<img src="https://github.com/user-attachments/assets/6ee6884e-569b-4013-b543-28b949035cfe" width="800"/>
 
  **Why?** Hydra is a powerful tool for performing dictionary attacks on network services like SSH. Using common usernames and passwords helps simulate real-world attacks.
 
