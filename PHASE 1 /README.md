@@ -14,7 +14,7 @@
 ```bash
 ping 192.168.142.131
 ```
-<img src="https://github.com/user-attachments/assets/73da16f9-f226-4db0-b2b3-a9234ee43dc8" width="800"/>
+<img src="https://github.com/user-attachments/assets/73da16f9-f226-4db0-b2b3-a9234ee43dc8" width="900"/>
 
 ####  Victim ➜ Attacker
 ```bash
