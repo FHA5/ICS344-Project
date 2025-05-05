@@ -70,8 +70,8 @@ set USERNAME vagrant
 set PASSWORD vagrant
 run
 ```
-<img src="https://github.com/user-attachments/assets/805f1eb1-15f3-4580-9845-f7b70a1f24e7" width="600"/>
-<img src="https://github.com/user-attachments/assets/4ad08960-3503-42d4-b984-8c7b5a21ac9e" width="600"/>
+<img src="https://github.com/user-attachments/assets/805f1eb1-15f3-4580-9845-f7b70a1f24e7" width="800"/>
+<img src="https://github.com/user-attachments/assets/4ad08960-3503-42d4-b984-8c7b5a21ac9e" width="800"/>
 
  **Why?** This Metasploit module attempts to login using supplied credentials. A successful login gives us shell access over SSH.
 
@@ -84,9 +84,9 @@ sessions
 sessions 2
 shell
 ```
-<img src="https://github.com/user-attachments/assets/84dc529f-e7a7-4458-a8ff-12f9a80a8d15" width="500"/>
-<img src="https://github.com/user-attachments/assets/70e3dd0d-61f7-41d5-b7f3-6b5e7b1061a0" width="500"/>
-<img src="https://github.com/user-attachments/assets/e355856b-ba2f-4a39-b99e-abad6ca37f2b" width="500"/>
+<img src="https://github.com/user-attachments/assets/84dc529f-e7a7-4458-a8ff-12f9a80a8d15" width="800"/>
+<img src="https://github.com/user-attachments/assets/70e3dd0d-61f7-41d5-b7f3-6b5e7b1061a0" width="800"/>
+<img src="https://github.com/user-attachments/assets/e355856b-ba2f-4a39-b99e-abad6ca37f2b" width="800"/>
 
 
 
@@ -103,7 +103,7 @@ Demonstrate manual exploitation without Metasploit, using Python to log in via S
 Paramiko is a Python library that supports SSH protocol handling. It enables us to automate login and command execution on remote servers.
 
 ### Python Script Execution Screenshot
-<img src="https://github.com/user-attachments/assets/64fe5eb6-a283-4036-a687-d16b3b3987b7" width="500"/>
+<img src="https://github.com/user-attachments/assets/64fe5eb6-a283-4036-a687-d16b3b3987b7" width="800"/>
 
 ### Script: `ssh_bruteforce_reverse.py`
 ```python
@@ -131,8 +131,8 @@ client.close()
 ```bash
 nc -lvnp 4444
 ```
-<img src="https://github.com/user-attachments/assets/c980584d-64bb-4fce-a2db-7005d5083a9d" width="500"/>
-<img src="https://github.com/user-attachments/assets/a0452dd1-0094-4592-8e98-73079a36a9bd" width="500"/>
+<img src="https://github.com/user-attachments/assets/c980584d-64bb-4fce-a2db-7005d5083a9d" width="800"/>
+<img src="https://github.com/user-attachments/assets/a0452dd1-0094-4592-8e98-73079a36a9bd" width="800"/>
 
  Once the victim executes the reverse shell command, a new connection is received in Netcat, granting the attacker control.
 
